@@ -73,10 +73,11 @@ __Módulo 1 - Introduciendo a R:__
   + Definición de Objetos: Valores, Vectores y DataFrames
   + Tipos de variable (numérica, de caracteres, lógicas)
   + Lectura y Escritura de Archivos
-
-  * [Introducción a R](Clase%201/Clase%201%20-%20Introduccion%20a%20R.nb.html)
-  * [Práctica guiada](Clase%201/Clase%201%20-%20Practica%20guiada.nb.html)
-  * [Práctica independiente](Clase%201/Clase%201%20-%20Practica%20independiente.nb.html)
+  
+  
+* [Introducción a R](Clase%201/Clase%201%20-%20Introduccion%20a%20R.nb.html)
+* [Práctica guiada](Clase%201/Clase%201%20-%20Practica%20guiada.nb.html)
+* [Práctica independiente](Clase%201/Clase%201%20-%20Practica%20independiente.nb.html)
 
 __Módulo 2 – Trabajando con bases de datos__
  
