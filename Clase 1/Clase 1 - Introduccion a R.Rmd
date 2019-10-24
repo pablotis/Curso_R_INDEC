@@ -1,14 +1,11 @@
 ---
-title: "Utilización del lenguaje R"
+title: "Introducción al lenguaje R"
 output:
-  html_document:
-    df_print: paged
-    toc: yes
   html_notebook:
     toc: yes
     toc_float: yes
-editor_options:
-  chunk_output_type: console
+  html_document:
+    toc: yes
 ---
   
 
@@ -41,21 +38,21 @@ Ambos operadores sirven para definir objetos, es decir, asignarle un valor.
 Sin embargo, en la práctica se suele utilizar el operador __```<-```__ para la definición de objetos, por más que el __```=```__ sea equivalente.  __A la izquierda__ del __```<-```__ debe ubicarse el nombre que tomará el elemento a crear. __Del lado derecho__ debe ir la definición del mismo.
 
 Veamos un ejemplo:
-```{r echo=TRUE}
+```{r error=TRUE}
 A <- 1
 A 
 ```
-
+  
 Al definir un elemento, el mismo queda guardado en el ambiente del programa, y podrá ser utilizado posteriormente para observar su contenido o para realizar una operación con el mismo.
 
-```{r echo=TRUE}
+```{r error=TRUE}
 A + 6
 ```
 
 Al correr una linea con el nombre del objeto, la consola del programa nos muestra su contenido. Entre corchetes observamos el número de orden del elemento en cuestión.
 
 
-```{r echo=TRUE}
+```{r error=TRUE}
 B <- 2
 B
 ```
@@ -63,7 +60,7 @@ B
 __```<-```__ es un operador __Unidireccional__, es decir que:     
 ```A <- B``` implica que __A__ va tomar como valor el contenido del objeto __B__, y no al revés.
 
-```{r echo=TRUE}
+```{r error=TRUE}
 A <- B
 
 #Ahora A toma el valor de B, y B continua conservando el mismo valor
@@ -81,7 +78,7 @@ En R, cuando se define un objeto con el mismo nombre de un objeto previamente ex
 - Cociente: $/$
 - Multiplicación: $*$
 
-```{r echo=TRUE}
+```{r error=TRUE}
 #suma
 A <- 5+6
 A
@@ -108,7 +105,7 @@ Los operadores lógicos son usados para describir relaciones, expresadas como ve
 - Distinto: $!=$
 
 
-```{r echo=TRUE}
+```{r error=TRUE}
 #Redefinimos los valores A y B
 A <- 10
 B <- 20
@@ -133,7 +130,7 @@ Como muestra el último ejemplo, el resultado de una operación lógica puede al
 - Ó: $|$
 - Y: $&$
 
-```{r echo=TRUE}
+```{r error=TRUE}
 #Redefinimos los valores A y B
 A <- 10
 B <- 20
@@ -176,7 +173,7 @@ Existen un gran cantidad de objetos distintos en R, en lo que respecta al curso 
 ### Valores
 Los valores pueden ser de distintas _clases_:   
 __Valores "Numeric" (numéricos)__
-```{r echo=TRUE}
+```{r error=TRUE}
 A <- 1
 class(A)
 ```
@@ -184,7 +181,7 @@ class(A)
 <br>
   
 __Valores 'Character' (caracter)__
-```{r echo=TRUE}
+```{r error=TRUE}
 A <- "Hola"
 class(A)
 
@@ -202,7 +199,7 @@ __Valores de tipo 'factor'__
   
 En general, es un dato numérico representado por una etiqueta.
 
-```{r echo=TRUE}
+```{r error=TRUE}
 valor1 <- "A"
 class(valor1)
 
@@ -232,7 +229,7 @@ Un vector es un conjunto de datos de un mismo tipo. En otras palabras, es un con
 Los vectores constituyen la estructura de datos más sencilla de R.
 
 Para crear un __vector__ utilizamos el comando ```c()```, de combinar.
-```{r echo=TRUE}
+```{r error=TRUE}
 # Vector numérico
 A <- c(1, 2, 2, 2, 1, 1, 1)
 A
@@ -257,14 +254,14 @@ A_etiquetas
 
 Con los vectores numéricos se pueden hacer operaciones como, por ejemplo:
 * sumarle 2 a cada elemento del __vector__ anterior.
-```{r echo=TRUE}
+```{r error=TRUE}
 D <- c(1, 3, 4)
 D <- D + 2
 D
 ```
 
 * sumarle 1 al primer elemento, 2 al segundo, y 3 al tercer elemento del __vector__ anterior
-```{r echo=TRUE}
+```{r error=TRUE}
 E <- D + 1:3 #esto es equivalente a hacer 3+1, 5+2, 6+9 
 E
 ```
@@ -275,14 +272,14 @@ E
 En R podemos quedarnos con algunos elemenos de los vectores para trabajar con o sobre ellos.
 Para acceder a un elemento del vector podemos buscarlo a través del número de orden, identificando al mismo utilizando los signos ```[ ]```
 
-```{r echo=TRUE}
+```{r error=TRUE}
 # Si quiero al elemento 2 del objeto E:
 E 
 E[2]
 ```
 
 Si nos interesa quedarnos con dicho valor, al buscarlo lo asignamos a un nuevo objeto.
-```{r echo=TRUE}
+```{r error=TRUE}
 E_posicion2 <-  E[2]
 E_posicion2
 ```
@@ -294,7 +291,7 @@ E_posicion2
 ```
 
 También podemos cambiar el texto del segundo elemento de E, por el texto "Pablo"
-```{r echo=TRUE}
+```{r error=TRUE}
 E
 E[2] <- "Pablo"
 E
@@ -311,7 +308,7 @@ Puede ser considerado como un conjunto de vectores de igual tamaño, donde cada 
 Este objeto es central en el proceso de trabajo, ya que es la estructura más usada para realizar análisis de datos, y suele ser la forma en que se cargan datos externos para trabajar en el ambiente de R, y en que se exportan los resultados de nuestros trabajo.  
 
 Veamos un ejemplo de data frame creado a partir de la combinación de vectores:
-```{r echo=TRUE}
+```{r error=TRUE}
 AGLOMERADO  <- c(32,33,33,33,32)
 
 SEXO  <-  c("Varon","Mujer","Mujer","Varon","Mujer")
@@ -326,7 +323,7 @@ class(Datos)
 Tal como en un __vector__ podemos acceder a los elementos a través de los ```[ ]```, en un __dataframe__ lo hacemos de la forma __```[fila, columna]```__.
 
 En los Data.Frames tenemos, por definición, más de una columna (variable). Para acceder a alguna de ellas podemos utilizar el operador __```$```__.
-```{r}
+```{r error=TRUE}
 Datos[3,2]
 Datos[4,3]
 
@@ -372,25 +369,25 @@ La lógica de esta sintaxis sería: "Me quedó con la variable __EDAD__, cuando 
 ### Listas
 
 Contienen una concatenación de objetos de cualquier tipo. Así como un vector contiene valores, un dataframe contiene vectores, una lista puede contener dataframes, pero también vectores, o valores, y _todo ello a la vez_
-```{r}
+```{r error=TRUE}
 LISTA <- list(A,B,C,D,E,Datos$AGLOMERADO, DF = Datos)
 LISTA
 ```
 
 Tal como para con los Vectores y los Data.Frames, podemos acceder a un elemento de una lista, utilizando el operador __```$```__:
-```{r}
+```{r error=TRUE}
 LISTA$DF
 LISTA$DF$EDAD
 LISTA$DF$EDAD[2]
 ```
 
 También se pueden usar corchetes dobles __```[[]]```__ para acceder a los distintos elementos de una lista.
-```{r}
+```{r error=TRUE}
 LISTA[[6]]
 ```
 
 O para acceder a un valor/vector (dependiendo del tipo de elemento de la lista) de un objeto de la lista:
-```{r}
+```{r error=TRUE}
 LISTA[[6]][1]
 
 LISTA[[7]][2]
@@ -408,7 +405,7 @@ A lo largo del curso iremos viendo numerosas funciones, según lo requieran los 
 - paste0(): concatena una serie de caracteres sin separar
 - sum(): suma de todos los elementos de un vector   
 - mean() promedio aritmético de todos los elementos de un vector   
-```{r}
+```{r error=TRUE}
 paste("Pega","estas", 4, "palabras", sep = " ")
 
 #Puedo concatenar caracteres almacenados en objetos
@@ -466,7 +463,7 @@ Vamos con un ejemplo. Tenemos que levantar la base individual de EPH del 1er tri
 
 En el parametro `file` tengo que especificar el nombre completo del archivo, incluyendo el directorio donde se encuentra. Lo más sencillo es abrir comillas, apretar `Tab` y se despliega el menú de las cosas que tenemos en el directorio de trabajo. Si queremos movernos hacia arriba, agregamos `../`
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
-individual_t117 <- read.table(file = 'Fuentes/usu_individual_t117.txt',
+individual_t117 <- read.table(file = '../Fuentes/usu_individual_t117.txt',
                               sep=";", 
                               dec=",", 
                               header = TRUE, 
@@ -478,7 +475,7 @@ Como puede observarse desde el ambiente (environment), la base de la EPH cuentan
 Al trabajar con bases de microdatos, resulta conveniente contar con algunos comandos para tener una mirada rápida de la base, antes de comenzar a realizar los procesamientos que deseemos.     
 
 Veamos algunos de ellos:
-```{r}
+```{r error=TRUE}
 
 View(individual_t117) # Abre la base en una ventana aparte
 names(individual_t117) # Devuelve el nombre de todas las variables
@@ -492,7 +489,7 @@ head(individual_t117)[ ,1:5] # Devuelve sólo los primeros valores para las colu
 
 Para leer y escribir archivos excel debemos utilizar los comandos que vienen con la librería ´´´openxlsx´´´
 ```{r, warning=FALSE}
-install.packages("openxlsx") # por única vez
+# install.packages("openxlsx") # por única vez
 
 # Activamos la librería para poder usar sus funciones
 library(openxlsx) 
@@ -511,7 +508,7 @@ write.xlsx( x = tabla_de_R, file = "archivo_tabla.xlsx",
 Dónde lo guardó? Si trabajamos con un proyecto, R establece un directorio por default que es aquella carpeta donde hayamos creado el proyecto. Podemos entrar a las sub-carpetas agregando niveles con las ´´´__/__´´´ y al final escribiendo el nombre del archivo con su extensión (´´´archivo_tabla.xlsx´´´)
 
 Con la función ´´´getwd()´´´ podemos visualizar la ruta que el programa tiene seteada:
-```{r}
+```{r error=TRUE}
 getwd()
 ```
 
