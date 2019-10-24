@@ -43,10 +43,10 @@ Personal del INDEC que necesita incorporar al programa R como herramienta de tra
 
 ## Objetivos
 
-### Objetivo principal
+  * Objetivo principal
 El presente Taller tiene como objetivo principal introducirse en el aprendizaje del lenguaje de programación R.
 
-### Objetivos secundarios
+  * Objetivos secundarios
 •	Se espera que los participantes logren:
 •	Incorporar herramientas prácticas para el procesamiento de datos, haciendo énfasis en la producción y el análisis de la información como así también en la visualización y presentación de los resultados.
 •	Incorporar la identificación de los diferentes tipos de datos con los participantes se pueden cruzar, y así, trabajar en función de ello de la forma más óptima.
@@ -63,7 +63,7 @@ Las clases del curso serán teórico-prácticas. Habrá una primera presentació
 ### Clases y contenido
 
 
-[Módulo 1 - Introduciendo a R:](https://pablotis.github.io/Presentaciones/clase1.html#1)
+__Módulo 1 - Introduciendo a R:__
   
 + Temas de clase: 
   + Descripción del programa “R”. Lógica sintáctica del lenguaje y comandos básicos
@@ -74,10 +74,11 @@ Las clases del curso serán teórico-prácticas. Habrá una primera presentació
   + Tipos de variable (numérica, de caracteres, lógicas)
   + Lectura y Escritura de Archivos
 
+  * [Introducción a R](Clase%201/Clase%201%20-%20Introduccion%20a%20R.nb.html)
+  * [Práctica guiada](Clase%201/Clase%201%20-%20Practica%20guiada.nb.html)
+  * [Práctica independiente](Clase%201/Clase%201%20-%20Practica%20independiente.nb.html)
 
-[Módulo 2 – Trabajando con bases de datos](Clase%203%20-%20Tidyverse%20-%20Tasas%20basicas/Clase%203%20-%20Bases%20de%20Datos%20y%20Mercado%20de%20Trabajo.nb.html)
-  
- -->Editar RMarkdown 
+__Módulo 2 – Trabajando con bases de datos__
  
 + Temas de clase:
   + Limpieza de Base de datos: Renombrar y recodificar variables, tratamiento de valores faltantes (missing values/ NA´s)
@@ -88,11 +89,8 @@ Las clases del curso serán teórico-prácticas. Habrá una primera presentació
   + Tratamiento de variables numéricas (edad, ingresos, gastos, horas de trabajo, cantidad de hijos / componentes del hogar, entre otras).
   + Ejercicios prácticos para aplicar lo expuesto:
  
-+ [Script](Clase%203%20-%20Tidyverse%20-%20Tasas%20basicas/Clase%203%20-%20Bases%20de%20Datos%20y%20Mercado%20de%20Trabajo.R)
-+ [Ejercicios](Clase%203%20-%20Tidyverse%20-%20Tasas%20basicas/Clase%203%20-%20Ejercicios.R)
 
-
-[Modulo 3 - Gráficos:](Clase%205%20-%20Graficos%20y%20Distribucion%20del%20Ingreso/Clase%205-%20Graficos%20e%20Ingresos.nb.html)
+__Módulo 3: Gráficos y visualización de la información__  
   
 + Temas de clase:
   + Gráficos básicos de R (función “plot”): Comandos para la visualización ágil de la información
@@ -101,11 +99,8 @@ Las clases del curso serán teórico-prácticas. Habrá una primera presentació
     + Parámetros de los gráficos: Leyendas, ejes, títulos, notas, colores
     + Gráficos con múltiples cruces de variables.
 
-+ [Script](Clase%205%20-%20Graficos%20y%20Distribucion%20del%20Ingreso/Clase%205-%20Graficos%20e%20Ingresos.R)
-+ [Ejercicios](Clase%205%20-%20Graficos%20y%20Distribucion%20del%20Ingreso/Clase%205-%20Ejercicios.R)
 
-
-[Módulo 4: Documentación en R. Generación de reportes/informes.](Clase%207%20-%20Markdown/Clase%207.%20Markdown.nb.html)
+__Módulo 4: Documentación en R. Generación de reportes/informes__
   
 + Temas de clase:
   + Manejo de las extensiones del software “Rmarkdown” y “RNotebook” para elaborar documentos de trabajo, presentaciones interactivas e informes:
@@ -114,10 +109,8 @@ Las clases del curso serán teórico-prácticas. Habrá una primera presentació
     + Caracteres especiales para incluir múltiples recursos en el texto del informe: Links a páginas web, notas al pie, enumeraciones, cambios en el formato de letra (tamaño, negrita, cursiva)
     + Código embebido en el texto para automatización de reportes
 
-+ [Markdown](Clase%207%20-%20Markdown/Clase%207.%20Markdown.Rmd)
 
-
-Módulo 5: Presentación de R Intermedio:
+__Módulo 5: Presentación de R Intermedio:__
 
 + Temas de clase: 
   + Acercamiento a técnicas más sofisticadas en R, útiles para automatizar el procesamiento periódico de la información:
@@ -126,12 +119,8 @@ Módulo 5: Presentación de R Intermedio:
     + Creación de funciones a medida del usuario
   + Herramientas para continuar el aprendizaje en R: Foros reconocidos de usuarios de R. Comunidades donde se comparten conocimientos, experiencias, consultas. Comandos para acceder a los documentos de ayuda.
 
-- [Explicación](Clase%208%20-%20Programacion%20funcional/explicacion.nb.html)
-- [Práctica Guiada](Clase%208%20-%20Programacion%20funcional/practica_guiada.nb.html)
-- [Pŕactica independiente](Clase%208%20-%20Programacion%20funcional/practica_independiente.nb.html)
 
-[Módulo: Trabajos prácticos: R en concreto / examen]
-  
+## Trabajos prácticos: R en concreto / examen
 
 + Se presentará a los/as alumnos/as problemas concretos vinculados a la EPH y en relación a las experiencias que se fueron volcando a lo largo de la cursada. Se deberán abordar mediante el uso de R, aplicando lo aprendido en los módulos anteriores. En conjunto se expondrán los desafíos que emergen en el momento y la evaluación de las herramientas adecuadas para su abordaje y resolución. Entre los temas giran aquellos vinculados a la distribución personal del ingreso/Construcción de percentiles de ingreso; el mercado laboral a través de la herramienta Panel de datos; la documentación en R (Estilo de Notas de Clase).
 +	Espacio para consultas puntuales sobre los temas vistos durante el curso y presentación del trabajo final a entregar.
