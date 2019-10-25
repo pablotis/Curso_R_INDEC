@@ -1,5 +1,5 @@
 ---
-title: "Introducción a R para Ciencias Sociales. Aplicación práctica en la EPH"
+title: "Introducción a R"
 subtitle: "Clase 2 - Practica independiente"
 output:
   html_notebook:
@@ -12,45 +12,51 @@ output:
 
 # Ejercicios de práctica
 
-- Crear un OBJETO llamado _COSA_ definido como el resultado de la multiplicación: 5*6
+<br> 
+
+a. Crear un OBJETO llamado _COSA_ definido como el resultado de la multiplicación: 5*6
 ```{r}
 
 ```
 
+<br> 
 
-- Crear un VECTOR _VECTOR0_ que contenga los números 10, 20, 30.
+b. Crear un VECTOR llamado _VECTOR0_ que contenga los números 10, 20, 30.
 ```{r}
 
 ```
 
+<br> 
 
-- Modificar el segundo elemento del _VECTOR0_, asignandole el valor *40*
+c. Modificar el segundo elemento del _VECTOR0_, asignandole el valor *40*
 ```{r}
 
 ```
 
+<br> 
 
-- Crear 3 vectores con la misma cantidad de elementos que VEC0, pero con variables string (texto) ( _VECTOR1_, _VECTOR2_, _VECTOR3_).
-- Crear un dataframe _DATAF_ como combinación de todos los __vectores__ creados previamente
+d. Crear 3 vectores con la misma cantidad de elementos que VECTOR0, pero con variables string (texto) ( _VECTOR1_, _VECTOR2_, _VECTOR3_).
 ```{r}
 
 ```
 
+<br> 
 
-- Crear un objeto llamado *OTRA_COSA* que guarde el valor contenido en la segunda fila y tercera columna del dataframe _DATAF_
+e. Crear un dataframe _DATAF_ como combinación de todos los __vectores__ creados previamente
 ```{r}
 
 ```
 
+<br> 
 
-- Levantar la base Individual del 4to trimestre de 2016 de la EPH
+f. Crear un objeto llamado *OTRA_COSA* que guarde el valor contenido en la segunda fila y tercera columna del dataframe _DATAF_
 ```{r}
 
 ```
 
+<br> 
 
-- Levantar del Excel llamado CANASTAS que se encuentra en la carpeta de Fuentes, la hoja "CBA" y definirla como _HojaCBA_.
+g Levantar la base Individual del 4to trimestre de 2016 de la EPH
 ```{r}
 
 ```
-
