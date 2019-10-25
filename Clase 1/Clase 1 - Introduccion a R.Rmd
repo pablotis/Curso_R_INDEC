@@ -548,7 +548,6 @@ Para crearlo, vamos al logo de nuevo projecto (Arriba a la izquierda de la panat
 
 Para quienes esten trabajando con sus computadoras personales, dejamos a continuación un listado de los paquetes complementarios del R base que utilizaremos a lo largo del curso. Como la instalación requiere descargar múltiples archivos de internet recomendamos hacerlo cuando dispongan de una buena conexión. Con el siguiente comando podrían instalarlos todos de una vez:       
 ```
-install.packages(c("tidyverse","openxlsx",'ggplot2','ggthemes', 'ggrepel','ggalt','kableExtra'))
+install.packages(c("tidyverse","openxlsx",'ggplot2','ggthemes', 'ggrepel','ggalt','kableExtra', 'rmarkdown'))
 ```
-  
-  
+
