@@ -1,0 +1,34 @@
+---
+title: "Introducción al uso de bases de datos con R"
+subtitle: "Clase 2 - ejercicios para practicar"
+date: "25/10/2019"
+output:
+  html_notebook:
+    toc: yes
+    toc_float: yes
+  html_document:
+    toc: yes
+---
+
+<br>
+
+<br>
+
+- Levantar la última base individual de EPH
+
+
+<br>
+
+- Acotar la Base únicamente a las variables que refieren a las siguientes características:
+      - Edad, Sexo, Ingreso de la ocupación principal, Categoría ocupacional, ESTADO, PONDERA y PONDIH
+
+<br>
+
+- Calcular las tasas de actividad, empleo y desempleo según sexo, para jóvenes entre 18 y 35 años
+
+<br>
+
+- Calcular el ingreso promedio de la ocupación principal por sexo, para dos grupos de edad: 18 a 35 años y 36 a 70 años. 
+
+<br>
+

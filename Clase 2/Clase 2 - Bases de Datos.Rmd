@@ -1,0 +1,433 @@
+---
+title: "Introducción al uso de bases de datos con R"
+subtitle: "Clase 2 - rbase y tidyverse para el manejo de bases de datos"
+date: "25/10/2019"
+output:
+  html_notebook:
+    toc: yes
+    toc_float: yes
+  html_document:
+    toc: yes
+---
+
+
+# Estructuración de Bases de Datos
+         
+
+A lo largo de esta clase veremos como trabajar con bases de datos. 
+
+Para mostrar las principales funciones que usaremos, crearemos un pequeño set de datos, con datos de hogares.
+
+```{r}
+
+HOGAR  <- c(1,1,1,1,2,3,3)
+
+MIEMBRO  <- c(1,2,3,4,1,1,2)
+
+SEXO  <-  c("Varon","Mujer","Mujer","Varon","Mujer","Varon","Mujer")
+
+EDAD  <-  c(60,54,18,27,32,71,66)
+
+NIVEL_ED  <-  c("Secundario","Terciario","Secundario","Secundario","Universitario",NA,"Primario")
+
+ESTADO  <-  c("Ocupado","Ocupado","Inactivo","Desocupado","Ocupado","Inactivo","Inactivo")
+             
+
+
+Datos <- data.frame(HOGAR,MIEMBRO, SEXO, EDAD, NIVEL_ED, ESTADO)
+
+
+```
+
+<br>
+
+##R base
+
+Para empezar, mostraremos algunos comandos básicos que nos permiten conocer la estructura de nuestra base.
+
+###str
+Para tener una vista preliminar  y conocer la estructura básica de nuestros datos, podemos usar la función __str__. La misma nos indica la cantidad de observaciones y de variables de nuestra base, y para cada variable nos indica el tipo de variable y nos muestra las primeras observaciones:
+
+```{r}
+str(Datos)
+
+```
+
+<br>
+
+###summary
+Nos sirve para conocer los estadísticos principales de las variables:
+```{r}
+summary(Datos)
+
+```
+
+<br>
+
+###names
+Si quisiéramos conocer los nombres de las variables de nuestro dataframe, podríamos usar la función __names__:
+
+```{r}
+names(Datos)
+```
+
+<br>
+
+###table
+Otra función muy útil es __table__, que nos da la frecuencia de una variable.
+
+```{r}
+table(Datos$NIVEL_ED)
+
+```
+
+
+###is.na
+En R los valores perdidos (missing values o __"NA"__ - not available-) condicionan la manera en que se trabaja con el programa. Entonces, resulta muy importante conocer su existencia, dónde se encuentran y cuántos son, ya que tienen que ser tratados de manera particular y muchas veces influyen en la escritura de funciones.
+
+Para conocer si hay missing values y cuáles son las variables que los contienen, podemos hacerlo ejecutando el siguiente comando:
+
+```{r}
+is.na(Datos)
+
+```
+
+También podemos hacerlo para una variable específica de nuestro dataframe:
+```{r}
+is.na(Datos$HOGAR)
+
+```
+
+<br>
+
+Como observamos en el comando anterior __table__, la tabla nos brinda la frecuencia de la variable NIVEL_ED para todas las categorías válidas de esa variable. Sin embargo, no nos muerta el valor perdido que nosotros vimos previamente que dicha variable contenía.
+
+Para que la tabla nos muestre también la frecuencia de los valores perdidos es necesario especificarlo.
+
+```{r}
+table(Datos$NIVEL_ED, exclude = NULL)
+
+```
+
+Supongamos ahora que la variable EDAD tiene un missing value:
+
+```{r}
+Datos$EDAD[2] <- NA
+
+Datos$EDAD
+
+```
+
+Que sucedería si queremos calcular el promedio de edad?
+
+```{r}
+mean(Datos$EDAD)
+
+```
+
+El resultado que obtenemos es nulo. Entonces, para poder calcular el promedio de una variable que tiene datos perdidos, considerando únicamente todos los valores válidos, tenemos que agregar __na.rm = TRUE__
+
+```{r}
+mean(Datos$EDAD, na.rm = TRUE)
+
+```
+
+Lo mismo nos sucedería con otras funciones que hacen operaciones sobre variables numéricas con valores perdidos, por ejemplo:
+
+```{r}
+sum(Datos$EDAD)
+
+```
+
+```{r}
+sum(Datos$EDAD, na.rm = TRUE)
+
+```
+
+Pero no si simplemente queremos contar la cantidad de elementos de un vector: 
+
+```{r}
+length(Datos$EDAD)
+
+```
+
+Volvemos a corregir el dato y lo dejamos como estaba originalmente:
+
+```{r}
+Datos$EDAD[2] <- 54
+
+Datos$EDAD
+
+```
+
+
+
+<br>
+
+##Librería **tidyverse**
+
+Ahora introduciremos la librería [Tidyverse](https://www.tidyverse.org/), que agrupa una serie de paquetes que tienen una misma lógica en su diseño y, por ende, funcionan en armonía.     
+Entre ellos usaremos principalmente __dplyr__ y __tidyr__ para realizar transformaciones sobre nuestro set de datos.
+
+A continuación cargamos la librería a nuestro ambiente. Para ello debe estar previamente instalada en nuestra pc.
+```{r, warning=FALSE,message=FALSE}
+
+#install.packages("tidyverse")
+library(tidyverse)
+
+```
+
+<br>
+
+### Dplyr
+
+Este paquete sirve para poder transformar bases de datos de forma eficiente, sencilla y bastante intuitiva.
+
+Vamos a ir viendo distintas funciones útiles que se encuentran comprendidas en esta librería.
+
+Todas las funciones tienen en común la utilización de un caracter: ```%>%``` , _pipe_ (de tubería), que es el que nos va a permitir unir los distintos comandos que queramos ejecutar.
+
+Los ```%>%``` toman el set de datos a su izquierda, y los transforman mediante los comandos a su derecha, en los cuales los elementos de la izquierda están implícitos. Es decír, que una vez específicado el DataFrame con el cual se trabaja, no será necesario nombrarlo nuevamente para referirse a una determinada variable/columna del mismo.
+
+Veamos las principales funciones que pueden utilizarse con la lógica de este paquete:
+
+### filter
+
+Permite filtrar observaciones de una base de datos acorde al cumplimiento de condiciones lógicas
+ 
+```{r}
+
+filter(Datos,EDAD>40 & ESTADO == "Ocupado")
+
+# O, lo que es lo mismo:
+# Datos %>% 
+#   filter(EDAD>40 , ESTADO == "Ocupado")
+
+```
+Nótese que en este caso al separar con una  ```,``` las condiciones se exige el cumplimiento de ambas (sería lo mismo usar el operador &). En caso de desear que se cumpla una de ambas condiciones debe utilizarse el operador ```|```, que significa "ó".
+
+```{r}
+Datos %>% 
+  filter(EDAD>40 |  ESTADO == "Ocupado")
+```
+
+<br>
+
+### rename
+Permite renombrar una columna (variable) de la base de datos.
+
+Funciona de la siguiente manera: 
+ ```Data %>% rename( nuevo_nombre = viejo_nombre )``` 
+ 
+```{r}
+Datos %>% 
+  rename(NMIEMBRO = MIEMBRO)
+```
+Nótese que a diferencia del ejemplo de la función __filter__ donde utilizábamos __==__ para comprobar una condición lógica, en este caso se utiliza sólo un __=__ ya que lo que estamos haciendo es _asignar_ un nombre.
+
+<br>
+
+### mutate
+Sirve para crear una nueva variable en la base de datos. Se debe especificar el nombre de la nueva variable seguido de el signo "=" y a continuación la definición de cómo se conforma la nueva variable. La misma puede ser el resultado de operaciones sobre otras variables de la misma tabla.       
+
+En caso de especificar el nombre de una columna existente, el resultado de la operación realizada "sobrescribirá" la información de la columna con dicho nombre.
+
+```{r}
+Datos %>% 
+  mutate(EDAD_ALCUADRADO=EDAD*EDAD)
+
+```
+
+
+<br>
+
+### case_when
+Permite definir condiciones excluyentes. Se puede utilizar en conjunto con la función "mutate" para crear una variable que tome determinados valores cuando cumple una condición. En caso de no cumplir ninguna de las condiciones establecidas la variable tomara valor __NA__.    
+
+Es equivalente a la función CASE WHEN de SQL.
+
+Su funcionamiento es el siguiente:      
+```case_when(condicion1 ~ "Valor1",condicion2 ~ "Valor2",condicion3 ~ "Valor3")```
+
+```{r}
+Datos <- Datos %>% 
+  mutate(GRUPO_EDAD = case_when(EDAD < 29 ~ "Joven",
+                                EDAD >=29 & EDAD<60  ~ "Adulto",
+                                EDAD >=60  ~ "Adulto mayor"))
+Datos
+```
+
+<br>
+
+### select
+Permite especificar la serie de columnas que se desea conservar de un DataFrame. También pueden especificarse las columnas que se desean descartar (agregándoles un _-_). Muy útil para agilizar el trabajo en bases de datos de gran tamaño.
+
+```{r}
+Datos %>% 
+  select(HOGAR,MIEMBRO,SEXO)
+
+
+
+```
+
+```{r}
+ Datos %>% 
+  select(-c(SEXO,GRUPO_EDAD))
+
+```
+
+
+<br>
+
+### arrange
+Permite ordenar una tabla por los valores de determinada/s variable/s. Es útil cuando luego deben hacerse otras operaciones que requieran del ordenamiento de la tabla
+```{r}
+Datos %>% 
+  arrange(ESTADO, EDAD)
+
+```
+
+```{r}
+Datos %>% 
+  arrange(desc(ESTADO), EDAD)
+
+```
+
+<br>
+
+### summarise
+Sirve para resumir/agrupar la información de una base de datos en una nueva tabla. Para ello, es necesario definir las variables de resumen y la función de agregación.
+```{r}
+Datos %>% 
+  summarise(Edad_prom = mean(EDAD))
+
+```
+
+<br>
+
+### group_by
+Esta función permite realizar operaciones de forma agrupada. Lo que hace la función es agrupar las observaciones (filas) según las categorías de la/s variable/s indicada en la función group_by y dentro de cada uno de esos "grupos de observaciones" de la tabla, hacer la operación especificada de manera independiente. En nuestro ejemplo, sería útil para calcular el promedio de edad por _ESTADO_ 
+```{r}
+Datos %>% 
+  group_by(ESTADO) %>%
+  summarise(EDAD_PROM = mean(EDAD))
+```
+
+```{r}
+Datos %>% 
+  group_by(SEXO,ESTADO) %>%
+  summarise(EDAD_PROM = mean(EDAD))
+```
+
+Notese que los ```%>%``` pueden usarse encadenados para realizar numerosos procedimientos sobre un dataframe original.
+
+<br>
+
+Veamos un ejemplo con multiples encadenamietnos
+```{r}
+Datos %>% 
+  filter(HOGAR == 1) %>% 
+  rename(NMIEMBRO = MIEMBRO) %>% 
+  mutate(GRUPO_EDAD = case_when(EDAD < 29 ~ "Joven",
+                                EDAD >=29 & EDAD<60  ~ "Adulto",
+                                EDAD >=60  ~ "Adulto mayor"))%>%
+  select(-NIVEL_ED)
+  
+```
+
+<br>
+
+## Joins
+
+Otra implementación muy importante del paquete dplyr son las funciones para unir diferentes tablas (joins)
+
+
+![fuente: http://rstudio-pubs-static.s3.amazonaws.com/227171_618ebdce0b9d44f3af65700e833593db.html](joins.png)         
+
+###left_join    
+
+Veamos un ejemplo de la función __left_join__ (una de las más utilizadas en la práctica).       
+Para ello crearemos previamente otro Dataframe que contenga un Ponderador para cada hogar del Dataframe _Datos_. 
+
+
+```{r}
+Ponderadores <- data.frame(HOGAR = c(1,2,3),
+                           PONDERADOR = c(264,520,310))
+Ponderadores
+```
+
+Ahora que tenemos las dos tablas, vamos a unirlas de manera que para cada observación de la tabla "Datos", tengamos el ponderador del hogar correspondiente.
+
+```{r}
+Datos_join <- Datos %>% 
+  left_join(.,Ponderadores, by = "HOGAR")
+Datos_join
+
+```
+
+Ahora, aprovecharemos el ejemplo para introducir la función __weigthed.mean__, y así calcular un valor ponderado, en nuestro caso, la edad promedio ponderada.
+
+```{r}
+
+Edad_prom_ponderada <- Datos_join %>% 
+  summarise(Edad_prom = weighted.mean(EDAD,w = PONDERADOR))
+
+Edad_prom_ponderada
+```
+
+
+
+
+## Tidyr
+
+El paquete tidyr esta pensado para facilitar la visualización de los datos ordenandolos de la manera más conveniente.
+
+__Gather__ es una función que nos permite pasar los datos de forma horizontal a una forma vertical. 
+
+__spread__ es una función que nos permite pasar los datos de forma vertical a una forma horizontal.
+
+![fuente: http://www.gis-blog.com/data-management-with-r-tidyr-part-1/](spreadVSgather.png)
+
+
+Usaremos un recorte de la base para mostrar como operan estas funciones:
+
+
+```{r}
+datos_recorte <- Datos %>% 
+  group_by(ESTADO,SEXO) %>%
+  summarise(EDAD_PROM = mean(EDAD))
+
+datos_recorte
+```
+
+
+
+### Spread
+```{r}
+datos_spread <- datos_recorte %>% 
+  spread(.,          # el . llama a lo que esta atras del %>% 
+  key = SEXO,        #la llave es la variable cuyos valores van a dar los nombres de columnas
+  value = EDAD_PROM) #los valores con que se llenan las celdas
+
+datos_spread  
+```
+
+<br>
+
+### Gather 
+
+```{r}
+##La función opuesta (gather) nos permite obtener un dataframe como el original partiendo de un dataframe como el recién construido.
+  
+datos_gather <- datos_spread %>%  
+  gather(.,           # el . llama a lo que esta atras del %>% 
+   key   = SEXO,      # como se llamará la variable que toma los nombres de las columnas 
+   value = EDAD_PROM, # como se llamará la variable que toma los valores de las columnas
+   2:3)               #le indico que columnas juntar
+
+datos_gather
+```
+
+
+
+
