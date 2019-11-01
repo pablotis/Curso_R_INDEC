@@ -1,0 +1,119 @@
+---
+title: "Bases de datos - Tablas de frecuencias"
+subtitle: "Clase 3 - Practica guiada"
+date: "01/11/2019"
+output:
+  html_notebook:
+    toc: yes
+    toc_float: yes
+  html_document:
+    toc: yes
+---
+
+<br>
+
+
+## Aplicación con la EANNA
+
+En primer lugar, cargamos las librerías que usaremos a lo largo de esta práctica.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(haven)
+library(tidyverse, warn = FALSE)
+library(openxlsx, warn = FALSE)
+library(plyr)
+library(eph)
+library(questionr)
+```
+
+<br>
+
+
+### **Ejercicio 1** - Cargamos la base de datos
+
+1.1.Levantar la base de la EANNA correspondiente al cuestionario 3 del ámbito urbano.
+
+```{r echo=TRUE}
+
+
+
+```
+
+<br>
+
+1.2. Crear una nueva variable que me permita identificar dos grupos de edades:
+
+* población de niños y niñas de 5 a 15 años
+* población de adolescentes de 16 y 17 años
+
+```{r echo=TRUE}
+
+
+
+```
+
+<br>
+
+
+### **Ejercicio 2** - Tablas de frecuencia
+
+<br>
+
+
+2.1. Crear una tabla de frecuencia absoluta con valores ponderados de la variable "combinación de actividades", según el diseño de registro _Diagvenn_, para la población de 5 a 15 años. 
+
+```{r echo=TRUE}
+
+
+```
+
+<br>
+
+2.2. Crear una tabla de frecuencia absoluta con valores ponderados de la variable "combinación de actividades", según el diseño de registro _Diagvenn_, para la población de 16 a 17 años. 
+
+```{r echo=TRUE}
+
+
+
+```
+
+<br>
+
+2.3. Crear una tabla que combine la información de los cuadros creados anteriormente (para pob. de 5 a 15 y de 16 a 17).
+
+```{r echo=TRUE}
+
+```
+
+<br>
+
+2.4. Crear una tabla de frecuencia relativa con valores ponderados de la variable "combinación de actividades" (Diagvenn) de los adolescentes de 16 y 17 años según sexo (C2_P03).
+
+```{r echo=TRUE}
+
+```
+
+<br>
+
+2.5. Cambiar los nombres de las columnas de la tabla del inciso anterior por nombres más descriptivos.
+
+
+```{r echo=TRUE}
+
+```
+
+
+
+<br>
+
+### **Ejercicio 3** - Exportación de tablas a excel
+
+<br>
+
+3.1. Exportar el último cuadro del ejercicio 2 a un excel.
+
+```{r echo=TRUE}
+
+
+```
+
