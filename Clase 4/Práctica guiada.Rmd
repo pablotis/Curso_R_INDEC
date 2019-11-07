@@ -1,0 +1,178 @@
+---
+title: "Módulo Gráficos"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+  html_notebook:
+    toc: yes
+    toc_float: yes
+subtitle: Práctica guiada
+editor_options:
+  chunk_output_type: console
+---
+
+- Cargo las librerías con las que voy a trabajar:
+```{r include=FALSE}
+library(eph)
+library(tidyverse)
+library(questionr)
+library(ggthemes)
+```
+
+***
+
+<br>
+<br>
+
+## Gráfico de barras con variables numéricas
+
+### Supongamos que queremos comparar la media del ingreso por la ocupación principal de las y los asalariados según la condición de registro.
+
+<br>
+
+__1. Descargamos la base de datos con la que vamos a trabajar:__
+```{r echo=TRUE}
+base <- get_microdata(year = 2018, trimester = 4, type = "individual")
+```
+
+<br>
+
+__2. Estructuramos la base para obtener la información que queremos visualizar:__
+```{r echo=TRUE}
+medias <- base %>% 
+  filter(ESTADO == 1, CAT_OCUP == 3) %>% 
+  mutate(condicion_registro = factor(PP07H,
+                                     levels = c(1, 2),
+                                     labels = c( "Registrado", "No registrado"))) %>% 
+  group_by(condicion_registro) %>% 
+  summarise(media = wtd.mean(P21))
+```
+
+<br>
+
+__3. Graficamos__
+```{r echo=TRUE}
+medias %>% 
+  ggplot(aes(x = condicion_registro,
+             y = media,
+             fill = condicion_registro)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = round(media, 1)),
+            vjust = 1) +
+  labs(title = "Media del ingreso de la ocupación principal de la \n población asalariada por condición de registro. Total aglomerados",
+       x = "Condición de registro",
+       y = "Media del ingreso de la Ocup. Principal",
+       caption = "Fuente: Elaboración propia en base a la EPH-INDEC") +
+  theme_clean()
+  #ggsave(filename = "barras_media.png", width = 6, height = 5)
+```
+
+<br>
+
+- _Con `labs` agregamos las etiquetas al gráfico (título, subtítulo, nombre de los ejes, notas al pie, etc.)._
+
+    - _Con ` \n ` podemos "partir" el título tantas veces como querramos._
+  
+- _Con `geom_text()` agregamos las etiquetas de los valores que toma la variable en el gráfico_
+
+
+<br>
+<br>
+
+
+***
+
+<br>
+<br>
+
+## Gráfico de barras para variables categóricas
+
+<br>
+
+### Parámetro de posición
+
+<br>
+<br>
+
+### __position = "stack"__
+
+* Posiciona de forma apilada cada una de las categorías, acumulando cantidades.
+```{r echo=TRUE}
+ggplot(data = base) +
+  geom_bar(aes(x = as.factor(NIVEL_ED),
+               fill = as.factor(CH04)),
+           position = "stack")
+```
+
+<br>
+<br>
+
+### __position = "fill"__
+
+* Posiciona de forma apilada cada una de las categorías, con límites de 0 a 1 (para comparación de proporciones)
+```{r echo=TRUE}
+ggplot(data = base) +
+  geom_bar(aes(x = as.factor(NIVEL_ED),
+               fill = as.factor(CH04)),
+           position = "fill")
+```
+
+<br>
+<br>
+
+###  __position = "dodge"__
+
+* Posiona de forma vertical las barras en función de las categorías
+```{r echo=TRUE}
+ggplot(data = base) +
+  geom_bar(aes(x = as.factor(NIVEL_ED),
+               fill = as.factor(CH04)),
+           position = "dodge")
+```
+
+<br>
+<br>
+
+***
+
+### ¿Y si invertimos el análisis?
+
+<br>
+<br>
+
+### __position = "stack"__
+
+* Posiciona de forma apilada cada una de las categorías, acumulando cantidades.
+```{r echo=TRUE}
+ggplot(data = base) +
+  geom_bar(aes(x = as.factor(CH04),
+               fill = as.factor(NIVEL_ED)),
+           position = "stack")
+```
+
+<br>
+<br>
+
+### __position = "fill"__
+
+* Posiciona de forma apilada cada una de las categorías, con límites de 0 a 1 (para comparación de proporciones)
+```{r echo=TRUE}
+ggplot(data = base) +
+  geom_bar(aes(x = as.factor(CH04),
+               fill = as.factor(NIVEL_ED)),
+           position = "fill")
+```
+
+<br>
+<br>
+
+### __position = "dodge"__
+
+* Posiona de forma vertical las barras en función de las categorías
+```{r echo=TRUE}
+ggplot(data = base) +
+  geom_bar(aes(x = as.factor(CH04),
+               fill = as.factor(NIVEL_ED)),
+           position = "dodge")
+```
