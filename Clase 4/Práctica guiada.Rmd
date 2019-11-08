@@ -74,6 +74,8 @@ medias %>%
 
     - _Con ` \n ` podemos "partir" el título tantas veces como querramos._
   
+<br>
+
 - _Con `geom_text()` agregamos las etiquetas de los valores que toma la variable en el gráfico_
 
 
@@ -84,50 +86,73 @@ medias %>%
 ***
 
 <br>
-<br>
 
 ## Gráfico de barras para variables categóricas
 
 <br>
 
-### Parámetro de posición
+- Intentemos graficar cómo se distribuye la población en función del nivel educativo de las personas y el sexo:
+
+<br>
+
+- Al ser ambas variables cualitativas, tendremos que estructura la base en fución:
+
+```{r}
+base_graf <- base %>% 
+  mutate(nivel_educativo = factor(NIVEL_ED,
+                                  levels = c(7, 1:6),
+                                  labels = c("Sin instrucción", "Primaria incompleta",
+                                             "Primaria completa", "Secundaria incompleta",
+                                             "Secundaria completa", "Superior incompleta",
+                                             "Superior completa")),
+         sexo               = factor(CH04,
+                                     levels = c(1, 2),
+                                     labels = c("Varón", "Mujer"))) %>% 
+  select(nivel_educativo, sexo, PONDERA)
+```
 
 <br>
 <br>
 
-### __position = "stack"__
+***
+
+## Parámetro de posición (`position = ""`)
+
+<br>
+
+### - __position = "stack"__
 
 * Posiciona de forma apilada cada una de las categorías, acumulando cantidades.
 ```{r echo=TRUE}
-ggplot(data = base) +
-  geom_bar(aes(x = as.factor(NIVEL_ED),
-               fill = as.factor(CH04)),
+ggplot(data = base_graf) +
+  geom_bar(aes(x = nivel_educativo,
+               fill = sexo),
            position = "stack")
 ```
 
 <br>
 <br>
 
-### __position = "fill"__
+### - __position = "fill"__
 
 * Posiciona de forma apilada cada una de las categorías, con límites de 0 a 1 (para comparación de proporciones)
 ```{r echo=TRUE}
-ggplot(data = base) +
-  geom_bar(aes(x = as.factor(NIVEL_ED),
-               fill = as.factor(CH04)),
+ggplot(data = base_graf) +
+  geom_bar(aes(x = nivel_educativo,
+               fill = sexo),
            position = "fill")
 ```
 
 <br>
 <br>
 
-###  __position = "dodge"__
+### - __position = "dodge"__
 
 * Posiona de forma vertical las barras en función de las categorías
 ```{r echo=TRUE}
-ggplot(data = base) +
-  geom_bar(aes(x = as.factor(NIVEL_ED),
-               fill = as.factor(CH04)),
+ggplot(data = base_graf) +
+  geom_bar(aes(x = nivel_educativo,
+               fill = sexo),
            position = "dodge")
 ```
 
@@ -136,18 +161,17 @@ ggplot(data = base) +
 
 ***
 
-### ¿Y si invertimos el análisis?
+### _¿Y si invertimos el análisis?_
 
-<br>
 <br>
 
 ### __position = "stack"__
 
 * Posiciona de forma apilada cada una de las categorías, acumulando cantidades.
 ```{r echo=TRUE}
-ggplot(data = base) +
-  geom_bar(aes(x = as.factor(CH04),
-               fill = as.factor(NIVEL_ED)),
+ggplot(data = base_graf) +
+  geom_bar(aes(x = sexo,
+               fill = nivel_educativo),
            position = "stack")
 ```
 
@@ -158,9 +182,9 @@ ggplot(data = base) +
 
 * Posiciona de forma apilada cada una de las categorías, con límites de 0 a 1 (para comparación de proporciones)
 ```{r echo=TRUE}
-ggplot(data = base) +
-  geom_bar(aes(x = as.factor(CH04),
-               fill = as.factor(NIVEL_ED)),
+ggplot(data = base_graf) +
+  geom_bar(aes(x = sexo,
+               fill = nivel_educativo),
            position = "fill")
 ```
 
@@ -171,8 +195,99 @@ ggplot(data = base) +
 
 * Posiona de forma vertical las barras en función de las categorías
 ```{r echo=TRUE}
-ggplot(data = base) +
-  geom_bar(aes(x = as.factor(CH04),
-               fill = as.factor(NIVEL_ED)),
+ggplot(data = base_graf) +
+  geom_bar(aes(x = sexo,
+               fill = nivel_educativo),
            position = "dodge")
 ```
+
+<br> 
+<br>
+
+***
+
+### _En el mismo gráfico podemos ir editando algo del estilo:
+
+<br>
+
+Con `scale_fill_viridis_d` cambiamos la paleta de colores a la escala _"viridis"_, diseñada por expertos en visualización de la información, pensada para lucir bien y poder ser leída incluso por gente con daltonismo.
+```{r echo=TRUE}
+base_graf2 <- base_graf %>%
+  calculate_tabulates("sexo", "nivel_educativo", weights = "PONDERA") %>% 
+  gather(key = nivel_educativo, value = poblacion, 2:8) %>% 
+  rename(sexo = `sexo/nivel_educativo`) %>% 
+  group_by(sexo) %>% 
+  mutate(pob_porcentaje = poblacion / sum(poblacion)*100)
+
+
+sum(base_graf2$pob_porcentaje[base_graf2$sexo=="Varón"])
+
+ggplot(data = base_graf2) +
+  geom_bar(aes(x = sexo,
+               y = pob_porcentaje,
+               fill = nivel_educativo),
+           position = "dodge",
+           stat     = "identity") +
+  geom_text(aes(x = sexo, 
+                y = pob_porcentaje,
+                group = nivel_educativo,
+                label = paste0(round(pob_porcentaje,1), "%")),
+            position=position_dodge(width=0.9),
+            vjust = -0.5,
+            size = 3) +
+  scale_fill_viridis_d() +
+  labs(title = "Distribución porcentual de la población por sexo según el \n máximo nivel educativo. Total Aglomerados. Trimestre 4, año 2018",
+       x = "Sexo",
+       y = "Máximo nivel educativo alcanzado",
+       caption = "Fuente: Elaboración propia en base a la EPH-INDEC")
+```
+
+<br>
+<br>
+
+* Posiciona de forma apilada cada una de las categorías, con límites de 0 a 1 (para comparación de proporciones). Agregamos etiquetas y estilo.
+```{r echo=TRUE}
+ggplot(data = base_graf2) +
+  geom_bar(aes(x = sexo,
+               y = pob_porcentaje,
+               fill = nivel_educativo),
+           position = "fill",
+           stat = "identity") +
+  geom_text(aes(x = sexo,
+               y = pob_porcentaje,
+               group = nivel_educativo,
+               label = paste0(round(pob_porcentaje,1), "%")),
+           position = "fill",
+           vjust = 2.5,
+           size = 5) +
+  scale_fill_viridis_d() +
+  labs(title = "Distribución porcentual de la población por sexo según el \n máximo nivel educativo. Total Aglomerados. Trimestre 4, año 2018",
+       x = "Sexo",
+       y = "Máximo nivel educativo alcanzado",
+       caption = "Fuente: Elaboración propia en base a la EPH-INDEC")
+```
+
+```{r}
+base_graf3 <- base_graf %>%
+  calculate_tabulates("nivel_educativo", weights = "PONDERA") %>% 
+  mutate(porcentaje = Freq / sum(Freq)*100) %>% 
+  arrange(desc(porcentaje)) %>%
+  mutate(ypos = cumsum(porcentaje) - 0.5 * porcentaje)
+
+ggplot(base_graf3, 
+       aes(x="", 
+           y=porcentaje, 
+           fill=nivel_educativo)) +
+  geom_bar(stat="identity", width=1, color="white") +
+  coord_polar("y", start=0) +
+  theme_void() + 
+  geom_text(aes(y = ypos, label = round(porcentaje,1)), 
+            color = "black", 
+            size=5) +
+  scale_fill_viridis_d()
+```
+
+<br>
+<br>
+
+### Hacer un gráfico de lineas, evolución en el tiempo.
