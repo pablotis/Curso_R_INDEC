@@ -1,0 +1,241 @@
+---
+title: "Módulo 5 - R Markdown"
+subtitle: "Ejemplo informe"
+author: "Pablo Tiscornia^[Dirección de la Encuesta Permanente de Hogares] y Carla Barreca^[Dirección de Estadísticas de Condiciones de Vida]"
+date: "*11 de noviembre de 2019*"
+output: 
+  html_notebook:
+    theme: sandstone
+    highlight: tango
+    toc: true
+    number_sections: false  
+    toc_depth: 3
+    toc_float: 
+      collapsed: false
+      smooth_scroll: true
+
+---
+
+<br>
+
+# Mercado de trabajo. Tasas e indicadores socioeconómicos (EPH)
+
+[Informe 1° trimestre 2019 - INDEC](https://www.indec.gob.ar/uploads/informesdeprensa/mercado_trabajo_eph_1trim19B489ACCDF9.pdf)
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(openxlsx)
+library(tidyverse)
+library(knitr)
+library(ggalt)
+library(kableExtra)
+library(formattable)
+#library(eph)
+
+
+```
+
+```{r include=FALSE}
+#Levantamos la base de la EPH del primer trimestre de 2019
+
+individual_t119 <-
+  read.table("../Fuentes/usu_individual_t119.txt",
+  sep = ";",
+  dec = ",",
+  header = TRUE,
+  fill = TRUE )
+
+#base <- get_microdata(year = 2019, trimester = 1, type = "individual")
+
+individual_t119 <- individual_t119 %>% 
+  rename(Sexo = CH04) %>% 
+  mutate(Sexo = factor(x= Sexo, 
+                       levels = c(1,2),
+                       labels = c("Varones","Mujeres")))
+
+
+```
+
+
+
+
+## Tasas del mercado de trabajo del primer trimestre de 2019
+
+```{r include=FALSE}
+
+Tasas <- individual_t119 %>% 
+  summarise(Poblacion         = sum(PONDERA),
+            Ocupados          = sum(PONDERA[ESTADO == 1]),
+            Desocupados       = sum(PONDERA[ESTADO == 2]),
+            PEA               = Ocupados + Desocupados,
+# También podemos llamar a las variables entre comillas, incluyendo nombres compuestos
+# A su vez, podemos utilizar la variable recién creada en la definción de otra varible
+            'Tasa Actividad'                  = round(PEA/Poblacion*100,1),
+            'Tasa Empleo'                     = round(Ocupados/Poblacion*100,1),
+            'Tasa Desocupacion'               = round(Desocupados/PEA*100,1))%>%
+  select(5:7)%>% 
+  gather(.,
+         key = Tasa,
+         value= Valor, 
+         1:3)
+
+tasa_act <- paste0(Tasas[1,2],"%")
+tasa_emp <- paste0(Tasas[2,2],"%")
+tasa_desoc <- paste0(Tasas[3,2],"%")
+
+```
+
+<br>
+
+Los resultados del primer trimestre de 2019 correspondientes al total de aglomerados urbanos muestran que la **tasa de actividad** es del **`r tasa_act`**, la **tasa de empleo** es del **`r tasa_emp`** y la **tasa de desocupación** es del **`r tasa_desoc`**.
+Mientras que las tasas de actividad y empleo no experimentan variaciones estadísticamente significativas, el aumento registrado en la tasa de desocupación reviste significancia estadística tanto en la comparación con el trimestre anterior como en la comparación con el primer trimestre de 2018.
+
+<br>
+
+```{r echo=FALSE}
+kable(Tasas, 
+      align = "l",
+      caption = "Principales tasas del mercado de trabajo - 1er trimestre 2019" ) %>%
+  kable_styling(bootstrap_options ="basic",
+                full_width = F) %>%
+  footnote(general = "Encuesta Permanente de Hogares - 1T 2019",
+           general_title = "Fuente:",
+           footnote_as_chunk = T) 
+```
+
+<br>
+
+### Tasas específicas por sexo
+
+```{r include=FALSE}
+
+Tasas_sexo <- individual_t119 %>% 
+  filter(CH06>=14) %>% 
+  group_by(Sexo) %>% 
+  summarise(Poblacion         = sum(PONDERA),
+            Ocupados          = sum(PONDERA[ESTADO == 1]),
+            Desocupados       = sum(PONDERA[ESTADO == 2]),
+            PEA               = Ocupados + Desocupados,
+# También podemos llamar a las variables entre comillas, incluyendo nombres compuestos
+# A su vez, podemos utilizar la variable recién creada en la definción de otra varible
+            'Tasa Actividad'                  = round(PEA/Poblacion*100,1),
+            'Tasa Empleo'                     = round(Ocupados/Poblacion*100,1),
+            'Tasa Desocupacion'               = round(Desocupados/PEA*100,1))%>%
+  select(1,6:8)%>% 
+  gather(.,
+         key = Tasa,
+         value= Valor, 
+         2:4) %>% 
+  spread(.,
+         key = Sexo,
+         value = Valor)
+
+
+```
+
+
+
+Al observar las *tasas específicas por sexo*, se observan grandes diferencias entre varones y mujeres. Mientras que la tasa de actividad y empleo es mayor para los varones, la tasa de desocupación es más alta en el grupo de mujeres.
+
+
+
+```{r echo=TRUE}
+
+Tasas_sexo %>%
+kable(., 
+      align = "l",
+      caption = "Tasas específicas por sexo - 1er trimestre 2019") %>%
+  kable_styling(bootstrap_options ="bordered",
+                full_width = T) %>%
+  footnote(general = "Encuesta Permanente de Hogares - 1T 2019",
+           general_title = "Fuente:",
+           footnote_as_chunk = T)%>%
+  column_spec(1, bold = T) %>%
+  row_spec(2, bold = T, color = "midnightblue",background = "aquamarine") %>% 
+  add_header_above(c(" ", "Sexo" = 2))
+
+
+```
+
+
+```{r include=FALSE}
+
+
+Tasas_sexo_grafico <- Tasas_sexo %>% 
+  gather(.,
+         key = Sexo,
+         value= Valor, 
+         2:3)
+
+```
+
+
+<br>
+
+#### **Gráficos**
+
+A continuación se presenta gráficamente la información de la tabla anterior de dos maneras distintas.
+El primer gráfico permite una mejor comparación por sexo de cada tasa específica. El segundo gráfico, en cambio, permite visualizar de forma más clara las relaciones entre las tasas del mercado de trabajo para varones y para mujeres.
+
+```{r echo=FALSE}
+Tasas_sexo_grafico %>% 
+  ggplot() +
+  geom_bar(aes(x = Tasa,
+               y = Valor,
+               fill = Sexo),
+           position = "dodge",
+           stat     = "identity")+
+  theme_minimal()+
+  geom_text(aes(x = Tasa,
+               y = Valor,
+               group = Sexo,
+               label = paste0(round(Valor,1), "%")),
+            position=position_dodge(width=0.9),
+            vjust = -0.5,
+            size = 3) +
+  labs(title = "Tasas específicas por sexo del mercado laboral. \n  Total Aglomerados. Trimestre 1, año 2019",
+       x = "",
+       y = "Porcentaje",
+       caption = "Fuente: Encuesta Permanente de Hogares - 1T 2019")
+```
+
+<br>
+
+```{r echo=FALSE}
+Tasas_sexo_grafico %>% 
+  ggplot() +
+  geom_bar(aes(x = Sexo,
+               y = Valor,
+               fill = Tasa),
+           position = "dodge",
+           stat     = "identity")+
+  theme_classic()+
+  geom_text(aes(x = Sexo,
+               y = Valor,
+               group = Tasa,
+               label = paste0(round(Valor,1), "%")),
+            position=position_dodge(width=0.9),
+            vjust = -0.5,
+            size = 3) +
+  labs(title = "Tasas específicas por sexo del mercado laboral. \n  Total Aglomerados. Trimestre 1, año 2019",
+       x = "",
+       y = "Porcentaje",
+       caption = "Fuente: Encuesta Permanente de Hogares - 1T 2019")
+```
+
+<br>
+
+
+----------------------------------------------------------------------------
+
+##### **Definiciones básicas**
+
+- Tasa de actividad:  $\frac{PEA}{Poblacion}$ 
+
+- Tasa de empleo:  $\frac{Ocupados}{Poblacion}$ 
+
+- Tasa de desocupacion:  $\frac{Desocupados}{PEA}$ 
+
+----------------------------------------------------------------------------
+
+<br>
+<br>

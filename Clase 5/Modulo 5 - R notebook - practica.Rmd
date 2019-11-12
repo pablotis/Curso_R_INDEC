@@ -1,0 +1,31 @@
+---
+title: "Módulo 5 - R Markdown"
+subtitle: "Práctica"
+
+date: "*12 de noviembre de 2019*"
+output: 
+  html_notebook:
+    toc: true
+    
+
+---
+
+<br>
+
+Continuar con el informe de la clase.
+
+Crear un tabulado que muestre la tasa de desocupación por sexo y grupo de edad, para los siguientes grupos:
+
+- Mujeres de 14 a 29 años
+- Mujeres de 30 a 64 años
+- Varones de 14 a 29 años
+- Varones de 30 a 64 años
+
+Efectuar un gráfico de barras con la información anterior, que muestre para cada sexo la tasa de desocupación por grupo de edad.
+Describir brevemente lo observado.
+
+
+
+
+
+
