@@ -12,7 +12,7 @@ Licenciado en Sociología, Universidad de Buenos Aires. En curso, Maestría en G
 __Carla BARRECA.__
 Licenciada en Economía (UNMdP) y Magíster en Economía Aplicada (UTDT). Se desempeña como analista de datos en la Dirección Nacional de Estadísticas de Condiciones de Vida del Instituto Nacional de Estadística y Censos (INDEC), realizando análisis estadístico/econométrico de la información vinculada a las encuestas a hogares. Actualmente se encuentra trabajando en la Encuesta de Nacional de Gastos de los Hogares, principalmente con el cálculo de estructuras de gastos y consumo de los hogares, imputaciones de datos faltantes mediante modelos de machine learning y cálculo de errores por muestra.
 
-__Juan Urricariet__
+__Juan URRICARIET__
 Licenciado en Economía, Universidad de Buenos Aires. Actualmente se desempeña como Técnico Analista en la Dirección de Encuesta Permanente de Hogares (EPH) del Instituto Nacional de Estadística y Censos (INDEC). Docente en Economía Política I y Economía Política II de la carrera Relaciones del Trabajo de la Facultad de Ciencias Sociales, Universidad de Buenos Aires.
 
 
