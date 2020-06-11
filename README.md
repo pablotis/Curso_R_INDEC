@@ -1,5 +1,7 @@
 
-# Programa y materiales de cursada
+# SOFTWARE ESTADÍSTICO R APLICADO AL ANÁLISIS Y PROCESAMIENTO DE LA INFORMACIÓN ESTADÍSTICA DEL INDEC (SEMIPRESENCIAL)
+
+## Programa y materiales de cursada
 
 ***
 
