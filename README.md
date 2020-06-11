@@ -140,7 +140,7 @@ Los criterios de evaluación tendrán en cuenta la capacidad de incorporar, inte
 
 ## Antecedentes al curso
 
-- __2019. _Curso de R para procesamiento de datos de la Encuesta Permanente de Hogares_, dictado por Pablo Tiscornia y Carla Barreca para el INDEC.
+- __2019. _SOFTWARE ESTADÍSTICO R APLICADO AL ANÁLISIS Y PROCESAMIENTO DE LA INFORMACIÓN ESTADÍSTICA DEL INDEC_, dictado por Pablo Tiscornia y Carla Barreca para el INDEC.
 - __2018. _Curso de R para procesamiento de datos de la Encuesta Permanente de Hogares_, dictado por Guido Weksler, Diego Kozlowski y Natsumi Shokida para el INDEC + CEPED.
 
 ## Bibliografía
