@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Introducción a R</title>
     <meta charset="utf-8" />
@@ -27,28 +27,51 @@ background-image: url(img/r_miedo.jpg)
 background-size: contain
 
 ---
-class: inverse
+class: inverse, center
+
+# R es...
+ 
+Libre (con licencia no paga)
+
+&lt;img src="img/softwarelibre.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, center
 
 # R es...
 
-&lt;br&gt;&lt;br&gt;
-  
-- Un software libre y abierto
-  
+Abierto
+
+&lt;img src="img/r_software_abierto.jpg" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, center
+
+# R es...
 &lt;br&gt;
 
 - Un lenguaje para el procesamiento y análisis de datos
   
 &lt;br&gt;
   
-- Su sintáxis básica es conocida como "R base"
+- El lenguaje troncal es conocido como "R base"
   
 &lt;br&gt;
   
-- Sobre esa base se desarrollan un conjunto de funciones y paquetes que incluso pueden cambiar ciertas formas de programar el código
+- Sobre esa base se desarrollan un conjunto de funciones y paquetes que incluso pueden cambiar ciertas formas de programar el mismo lenguaje
   
-&lt;br&gt;
   
+---
+class: middle, center
+
+## Paquetes
+  
+## librerías 
+  
+## y 
+  
+## funciones
+
 ---
 class: middle, center, inverse
 
@@ -56,7 +79,6 @@ background-image: url(img/R1.PNG)
 background-size: contain
 
 ---
-
 class: middle, center, inverse
 
 background-image: url(img/R2.PNG)
@@ -81,7 +103,6 @@ background-image: url(img/R5.PNG)
 background-size: contain
   
 ---
-
 class: middle, center
 
 # ¿Por qué R?
@@ -97,13 +118,19 @@ class: inverse
 
 &lt;br&gt;
 
+--
+
 - Permite crear funciones a medida
 
 &lt;br&gt;
 
-- Garantiza la reproducibilidad y la "fiscalización" de trabajo
+--
+
+- Mejora la reproducibilidad y la estandarización de procesos
 
 &lt;br&gt;
+
+--
 
 - Destina más memoria al funcionamiento que a la plataforma
 
@@ -114,19 +141,15 @@ class: inverse
 
 ## ¿Por qué R?
 
-&lt;br&gt;
-
 - Su comunidad potencia la capacidad de consulta y respuesta
 
-&lt;br&gt;
 
-&lt;img src="img/r_ayuda.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/r_ayuda.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: inverse
 
 ## ¿Por qué R?
-
 
 - Consultas sobre los programas estadísticos en Google
   
@@ -139,23 +162,23 @@ class: inverse
 
 - Sus gráficos son flexibles y con calidad de publicación
 
-.pull-left[
-![](img/grafico_ingresos.jpg)]
+&lt;img src="img/grafico_ingresos.jpg" width="90%" style="display: block; margin: auto;" /&gt;
 
-.pull-right[
-![](img/grafico_cap_inst.png)]
+---
+class: inverse
 
+## ¿Por qué R?
+
+&lt;img src="img/grafico_cap_inst.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: inverse
 
 ## ¿Por qué R?
   
-- Su potencia aumenta significativamente a medida que usuarixs, investigadorxs, institutos, organizaciones y empresas privadas "crean" y, sobre todo, publican funciones específicas para problemas particulares.
-  
 - Para el año 2019 se publicaron más de 16.000 paquetes "oficiales" en CRAN
 
-&lt;img src="https://gist.githubusercontent.com/daroczig/3cf06d6db4be2bbe3368/raw/b66b0531fb1b86d3e04a003b2e105ad4f147900e/number-of-submitted-packages-to-CRAN.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://gist.githubusercontent.com/daroczig/3cf06d6db4be2bbe3368/raw/b66b0531fb1b86d3e04a003b2e105ad4f147900e/number-of-submitted-packages-to-CRAN.png" width="110%" style="display: block; margin: auto;" /&gt;
   fuente: [Gergely Daróczi](https://blog.revolutionanalytics.com/2017/01/cran-10000.html)
 
 
@@ -163,9 +186,9 @@ class: inverse
 
 class: inverse
 
-## R vs SPSS / STATA / SAS
+## R vs otros programas de licencia paga
 
-- R Es gratuito 
+- R Es gratuito (todas sus versiones, todas sus herramientas, todo el tiempo)
 
 --
 
@@ -173,7 +196,7 @@ class: inverse
 
 --
   
-- En STATA/ SPSS / SAS trabajas con lo disponible, en R podés crear herramientas en función de los problemas con los que te enfrentas
+- Con R se generó una comunidad dedicada a facilitar el acceso al lenguaje y, también, a su desarrollo (los "mortales" podemos crear herramientas en función de los problemas con los que nos enfrentamos).
 
 --
   
@@ -182,52 +205,56 @@ class: inverse
 --
   
 - Potencia: 
-    * Trabaja virtualmente
+    * no trabaja sobre objetos físicos
     * Totalmente automatizable
     * Interactua con otros lenguajes
 
 --
   
-- R te "exige" conocer más sobre tus datos, tus procesos y sobre estadística.
+- R te demanda mayor conocimiento sobre tus datos, tus procesos y también sobre estadística.
 
 ---
 class: middle, center
 
-# ¡Manos a la obra!
+# Manos a la obra
 
 ---
 class: inverse, middle
 
 ## Rstudio
 
-&lt;br&gt;&lt;br&gt;
+&lt;br&gt;
 
 - Es el entorno más popular para trabajar con el lenguaje R.
 
 &lt;br&gt;
 
-- Es una empresa que no cobra por el uso del programa, sino por el soporte (en general, proyectos de gran escala).
+- Es una empresa que no cobra por el uso del programa.
 
 &lt;br&gt;
 
-- Es también como traductor de R a diferentes lenguajes, lo que permite trabajar el dato, visualizar los resultados y generar reportes en diferentes formatos de salida (.doc, .xlsx., .pdf, presentaciones, dashboards, entre otros.)
+- Es una plataforma para procesar en R y, también, interactuar con diferentes formatos y lenguajes, lo que permite trabajar el dato, visualizar los resultados y generar reportes con mùltiples salidas (.doc, .xlsx., .pdf, presentaciones, dashboards, entre otros.) y sin tener que salir del programa.
 
 ---
-class: inverse
+class: inverse, center, middle
 
-## Rstudio
+.pull-left[
 
-&lt;img src="img/paso1.png" width="90%" style="display: block; margin: auto;" /&gt;
+## R:
 
----
-class: inverse, middle
+&lt;br&gt;
 
-  
-  * Abramos el contenido de la Clase 1 en el archivo (ojo con la extensión) _"Clase 1 - Introducción a R.html"_
-  
-  * Luego vamos a _File/Archivo --&gt; New File/Nuevo archivo --&gt; R Notebook_
-  
-&lt;img src="img/paso2.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/r_software_abierto.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+## RStudio:
+
+&lt;br&gt;
+
+&lt;img src="img/r_panel_rstudio.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -270,9 +297,25 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
-
-<script>
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
 (function() {
   var links = document.getElementsByTagName('a');
   for (var i = 0; i < links.length; i++) {
@@ -280,8 +323,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       links[i].target = '_blank';
     }
   }
-})();
-</script>
+})();</script>
 
 <script>
 slideshow._releaseMath = function(el) {
