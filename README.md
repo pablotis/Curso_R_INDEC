@@ -12,10 +12,6 @@ Licenciado en Sociología, Universidad de Buenos Aires. En curso, Maestría en G
 __Carla BARRECA.__
 Licenciada en Economía (UNMdP) y Magíster en Economía Aplicada (UTDT). Se desempeña como analista de datos en la Dirección Nacional de Estadísticas de Condiciones de Vida del Instituto Nacional de Estadística y Censos (INDEC), realizando análisis estadístico/econométrico de la información vinculada a las encuestas a hogares. Actualmente se encuentra trabajando en la Encuesta de Nacional de Gastos de los Hogares, principalmente con el cálculo de estructuras de gastos y consumo de los hogares, imputaciones de datos faltantes mediante modelos de machine learning y cálculo de errores por muestra.
 
-__Juan URRICARIET__
-Licenciado en Economía, Universidad de Buenos Aires. Actualmente se desempeña como Técnico Analista en la Dirección de Encuesta Permanente de Hogares (EPH) del Instituto Nacional de Estadística y Censos (INDEC). Docente en Economía Política I y Economía Política II de la carrera Relaciones del Trabajo de la Facultad de Ciencias Sociales, Universidad de Buenos Aires.
-
-
 <br>
 
 ***
@@ -145,13 +141,13 @@ Evaluación de producto: a través de la incorporación e integración de los co
 
 Los criterios de evaluación tendrán en cuenta la capacidad de incorporar, integrar y aplicar los conceptos y herramientas abordados durante el desarrollo del curso.
 
-## Antecedentes
+## Antecedentes al curso
 
 - __2018. _Curso de R para procesamiento de datos de la Encuesta Permanente de Hogares_, dictado por [Guido Weksler](https://independent.academia.edu/guidoweksler), [Diego Kozlowski](https://sites.google.com/view/diego-kozlowski/home) y [Natsumi Shokida](https://rpubs.com/natsumi_shokida/) para el INDEC + CEPED.
 
 ## Bibliografía
 
--	Wickham, H., & Grolemund, G. (2016). R for data science: import, tidy, transform, visualize, and model data. “O’Reilly Media, Inc.”. https://es.r4ds.hadley.nz/
 -	Antonio Vazquez Brust (2019). Ciencia de Datos para Gente Sociable. https://bitsandbricks.github.io/ciencia_de_datos_gente_sociable/
+-	Wickham, H., & Grolemund, G. (2016). R for data science: import, tidy, transform, visualize, and model data. “O’Reilly Media, Inc.”. https://es.r4ds.hadley.nz/
 -	Wickham, H. ggplot2: elegant graphics for data analysis. Springer, 2016. https://ggplot2-book.org/
 
