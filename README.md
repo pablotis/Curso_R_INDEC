@@ -9,9 +9,6 @@
 __Pablo TISCORNIA.__
 Licenciado en Sociología, Universidad de Buenos Aires. En curso, Maestría en Generación y Análisis de la Información Estadística, Universidad Nacional Tres de Febrero (UNTREF). Actualmente se desempeña como Técnico Analista en la Dirección de Encuesta Permanente de Hogares (EPH) del Instituto Nacional de Estadísticas y Censos (INDEC) y como docente a cargo del curso de posgrado “Introducción a R para Ciencias Sociales. Aplicación práctica en la Encuesta Permanente de Hogares” junto a Guido Weksler, en el marco del programa CEIA – Centro de Estadística Aplicada e Informática Aplicada - Facultad Latinoamericana de Ciencias Sociales (FLACSO).
 
-__Carla BARRECA.__
-Licenciada en Economía (UNMdP) y Magíster en Economía Aplicada (UTDT). Se desempeña como analista de datos en la Dirección Nacional de Estadísticas de Condiciones de Vida del Instituto Nacional de Estadística y Censos (INDEC), realizando análisis estadístico/econométrico de la información vinculada a las encuestas a hogares. Actualmente se encuentra trabajando en la Encuesta de Nacional de Gastos de los Hogares, principalmente con el cálculo de estructuras de gastos y consumo de los hogares, imputaciones de datos faltantes mediante modelos de machine learning y cálculo de errores por muestra.
-
 <br>
 
 ***
@@ -143,7 +140,8 @@ Los criterios de evaluación tendrán en cuenta la capacidad de incorporar, inte
 
 ## Antecedentes al curso
 
-- __2018. _Curso de R para procesamiento de datos de la Encuesta Permanente de Hogares_, dictado por [Guido Weksler](https://independent.academia.edu/guidoweksler), [Diego Kozlowski](https://sites.google.com/view/diego-kozlowski/home) y [Natsumi Shokida](https://rpubs.com/natsumi_shokida/) para el INDEC + CEPED.
+- __2019. _Curso de R para procesamiento de datos de la Encuesta Permanente de Hogares_, dictado por Pablo Tiscornia y Carla Barreca para el INDEC.
+- __2018. _Curso de R para procesamiento de datos de la Encuesta Permanente de Hogares_, dictado por Guido Weksler, Diego Kozlowski y Natsumi Shokida para el INDEC + CEPED.
 
 ## Bibliografía
 
